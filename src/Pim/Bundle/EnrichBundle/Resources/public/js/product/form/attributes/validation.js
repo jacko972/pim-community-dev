@@ -24,11 +24,6 @@ define(
             initialize: function () {
                 mediator.off(null, null, 'context:product:form:validation');
                 mediator.on('validation_error', _.bind(this.validationError, this), 'form:product:validation');
-                mediator.on(
-                    'product:action:post_update',
-                    _.bind(this.removeValidationErrors, this),
-                    'context:product:form:validation'
-                );
 
                 BaseForm.prototype.initialize.apply(this, arguments);
             },
