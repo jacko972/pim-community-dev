@@ -2,6 +2,7 @@
 
 namespace Pim\Bundle\EnrichBundle\Controller\Rest;
 
+use Akeneo\Component\FileStorage\RawFile\RawFileStorerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -14,15 +15,15 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class MediaController
 {
-    /** @var string */
-    protected $uploadDir;
+    /** @var RawFileStorerInterface */
+    protected $storer;
 
     /**
-     * @param string $uploadDir
+     * @param RawFileStorerInterface $storer
      */
-    public function __construct($uploadDir)
+    public function __construct(RawFileStorerInterface $storer)
     {
-        $this->uploadDir = $uploadDir;
+        $this->storer = $storer;
     }
 
     /**
@@ -34,18 +35,9 @@ class MediaController
      */
     public function postAction(Request $request)
     {
-        $file = $request->files->get('file');
+        $rawFile = $request->files->get('file');
+        $file = $this->storer->store($rawFile, 'storage');
 
-        $movedFile = $file->move(
-            $this->uploadDir . '/',
-            uniqid() . '_' . $file->getClientOriginalName()
-        );
-
-        return new JsonResponse(
-            [
-                'originalFilename' => $file->getClientOriginalName(),
-                'filePath'         => $movedFile->getPathname()
-            ]
-        );
+        return new JsonResponse($file->getKey());
     }
 }

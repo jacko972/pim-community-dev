@@ -2,7 +2,7 @@
 
 namespace Pim\Bundle\CatalogBundle\Model;
 
-use Symfony\Component\HttpFoundation\File\File;
+use Akeneo\Component\FileStorage\Model\FileInterface;
 
 /**
  * Abstract product media (backend type entity)
@@ -16,26 +16,26 @@ abstract class AbstractProductMedia implements ProductMediaInterface
     /** @var int|string */
     protected $id;
 
-    /** @var \Symfony\Component\HttpFoundation\File\File */
+    /** @var FileInterface */
     protected $file;
 
-    /** @var string */
-    protected $filename;
-
-    /** @var string */
-    protected $originalFilename;
-
-    /** @var string */
-    protected $mimeType;
+//    /** @var string */
+//    protected $filename;
+//
+//    /** @var string */
+//    protected $originalFilename;
+//
+//    /** @var string */
+//    protected $mimeType;
 
     /** @var ProductValueInterface */
     protected $value;
 
-    /** @var bool */
-    protected $removed = false;
-
-    /** @var int */
-    protected $copyFrom;
+//    /** @var bool */
+//    protected $removed = false;
+//
+//    /** @var int */
+//    protected $copyFrom;
 
     /**
      * {@inheritdoc}
@@ -45,15 +45,15 @@ abstract class AbstractProductMedia implements ProductMediaInterface
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function setId($id)
+//    {
+//        $this->id = $id;
+//
+//        return $this;
+//    }
 
     /**
      * {@inheritdoc}
@@ -66,7 +66,7 @@ abstract class AbstractProductMedia implements ProductMediaInterface
     /**
      * {@inheritdoc}
      */
-    public function setFile(File $file)
+    public function setFile(FileInterface $file)
     {
         $this->file = $file;
 
@@ -78,72 +78,84 @@ abstract class AbstractProductMedia implements ProductMediaInterface
      */
     public function getFilename()
     {
-        return $this->filename;
+        if (null === $this->file) {
+            return null;
+        }
+
+        return $this->file->getKey();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setFilename($filename)
-    {
-        $this->filename = $filename;
-
-        return $this;
-    }
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function setFilename($filename)
+//    {
+//        $this->filename = $filename;
+//
+//        return $this;
+//    }
 
     /**
      * {@inheritdoc}
      */
     public function getOriginalFilename()
     {
-        return $this->originalFilename;
+        if (null === $this->file) {
+            return null;
+        }
+
+        return $this->file->getOriginalFilename();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setOriginalFilename($originalFilename)
-    {
-        $this->originalFilename = $originalFilename;
-
-        return $this;
-    }
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function setOriginalFilename($originalFilename)
+//    {
+//        $this->originalFilename = $originalFilename;
+//
+//        return $this;
+//    }
 
     /**
      * {@inheritdoc}
      */
     public function getMimeType()
     {
-        return $this->mimeType;
+        if (null === $this->file) {
+            return null;
+        }
+
+        return $this->file->getMimeType();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setMimeType($mimeType)
-    {
-        $this->mimeType = $mimeType;
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function setMimeType($mimeType)
+//    {
+//        $this->mimeType = $mimeType;
+//
+//        return $this;
+//    }
 
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setRemoved($removed)
-    {
-        $this->removed = $removed;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isRemoved()
-    {
-        return $this->removed;
-    }
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function setRemoved($removed)
+//    {
+//        $this->removed = $removed;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function isRemoved()
+//    {
+//        return $this->removed;
+//    }
 
     /**
      * {@inheritdoc}
@@ -163,39 +175,39 @@ abstract class AbstractProductMedia implements ProductMediaInterface
         return $this->value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getCopyFrom()
-    {
-        return $this->copyFrom;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCopyFrom($copyFrom)
-    {
-        $this->copyFrom = $copyFrom;
-
-        return $this;
-    }
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function getCopyFrom()
+//    {
+//        return $this->copyFrom;
+//    }
+//
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function setCopyFrom($copyFrom)
+//    {
+//        $this->copyFrom = $copyFrom;
+//
+//        return $this;
+//    }
 
     /**
      * {@inheritdoc}
      */
     public function __toString()
     {
-        return (string) $this->filename;
+        return (string) $this->getFilename();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function resetFile()
-    {
-        $this->file = null;
-
-        return $this;
-    }
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function resetFile()
+//    {
+//        $this->file = null;
+//
+//        return $this;
+//    }
 }

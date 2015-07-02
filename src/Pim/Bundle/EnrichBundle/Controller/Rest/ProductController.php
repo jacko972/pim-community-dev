@@ -176,7 +176,8 @@ class ProductController
         $violations = $this->validator->validate($product);
 
         if (0 === $violations->count()) {
-            $this->productSaver->save($product);
+            //TODO: temporary should be able to calculate completeness
+            $this->productSaver->save($product, ['recalculate' => false]);
 
             return new JsonResponse($this->normalizer->normalize($product, 'internal_api'));
         } else {

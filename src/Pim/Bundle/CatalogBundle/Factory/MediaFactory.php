@@ -2,7 +2,7 @@
 
 namespace Pim\Bundle\CatalogBundle\Factory;
 
-use Symfony\Component\HttpFoundation\File\File;
+use Akeneo\Component\FileStorage\Model\FileInterface;
 
 /**
  * A Media object factory
@@ -25,15 +25,14 @@ class MediaFactory
     }
 
     /**
-     * @param File|null $file
+     * @param FileInterface|null $file
      *
      * @return \Pim\Bundle\CatalogBundle\Model\ProductMediaInterface
      */
-    public function createMedia(File $file = null)
+    public function createMedia(FileInterface $file = null)
     {
-        /** @var \Pim\Bundle\CatalogBundle\Model\ProductMediaInterface $media */
         $media = new $this->mediaClass();
-        if ($file) {
+        if (null !== $file) {
             $media->setFile($file);
         }
 

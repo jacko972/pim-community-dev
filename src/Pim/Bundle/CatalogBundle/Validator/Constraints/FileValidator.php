@@ -2,8 +2,8 @@
 
 namespace Pim\Bundle\CatalogBundle\Validator\Constraints;
 
+use Akeneo\Component\FileStorage\Model\FileInterface;
 use Pim\Bundle\CatalogBundle\Model\ProductMediaInterface;
-use Symfony\Component\HttpFoundation\File\File as FileObject;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\FileValidator as BaseFileValidator;
@@ -30,7 +30,8 @@ class FileValidator extends BaseFileValidator
             return;
         }
 
-        parent::validate($value, $constraint);
+//        TODO: handle file validation
+//        parent::validate($value, $constraint);
 
         $this->validateAllowedExtension($value, $constraint);
     }
@@ -44,13 +45,15 @@ class FileValidator extends BaseFileValidator
     protected function validateAllowedExtension($value, Constraint $constraint)
     {
         if ($constraint->allowedExtensions) {
-            $file = $value instanceof \SplFileInfo ? $value : new \SplFileInfo($value);
 
-            if ($file instanceof UploadedFile) {
-                $extension = $file->getClientOriginalExtension();
-            } elseif ($file instanceof FileObject) {
-                $extension = $file->getExtension();
+            if ($value instanceof FileInterface) {
+                $extension = $value->getExtension();
+            } elseif ($value instanceof UploadedFile) {
+                $extension = $value->getClientOriginalExtension();
+            } elseif ($value instanceof \SplFileInfo) {
+                $extension = $value->getExtension();
             } else {
+                $file = new \SplFileInfo($value);
                 $extension = pathinfo($file->getFilename(), PATHINFO_EXTENSION);
             }
 

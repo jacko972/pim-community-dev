@@ -8,24 +8,30 @@ Pim\Bundle\CatalogBundle\Model\ProductMedia:
             id: true
             generator:
                 strategy: AUTO
-        filename:
-            type: string
-            length: 255
-            nullable: true
-        originalFilename:
-            type: string
-            nullable: true
-            column: original_filename
-        mimeType:
-            type: string
-            length: 255
-            nullable: true
-            column: mime_type
+#        filename:
+#            type: string
+#            length: 255
+#            nullable: true
+#        originalFilename:
+#            type: string
+#            nullable: true
+#            column: original_filename
+#        mimeType:
+#            type: string
+#            length: 255
+#            nullable: true
+#            column: mime_type
     oneToOne:
         value:
             targetEntity: Pim\Bundle\CatalogBundle\Model\ProductValueInterface
             mappedBy: media
             joinColumns:
                 value_id:
+                    referencedColumnName: id
+                    onDelete: 'SET NULL'
+        file:
+            targetEntity: Akeneo\Component\FileStorage\Model\FileInterface
+            joinColumns:
+                file_id:
                     referencedColumnName: id
                     onDelete: 'SET NULL'

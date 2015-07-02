@@ -9,3 +9,5 @@ Pim\Bundle\CatalogBundle\Model\ProductMedia:
             type: string
         mimeType:
             type: string
+        #TODO: drop useless columns
+        #TODO: link to files

@@ -2,7 +2,7 @@
 
 namespace Pim\Bundle\CatalogBundle\Model;
 
-use Symfony\Component\HttpFoundation\File\File;
+use Akeneo\Component\FileStorage\Model\FileInterface;
 
 /**
  * Product media interface (backend type entity)
@@ -20,28 +20,32 @@ interface ProductMediaInterface
      */
     public function getValue();
 
-    /**
-     * Set id
-     *
-     * @param int|string $id
-     *
-     * @return ProductMediaInterface
-     */
-    public function setId($id);
+//    /**
+//     * TODO: remove it
+//     *
+//     * Set id
+//     *
+//     * @param int|string $id
+//     *
+//     * @return ProductMediaInterface
+//     */
+//    public function setId($id);
 
     /**
      * Set file
      *
-     * @param File $file
+     * @param FileInterface $file
      *
      * @return ProductMediaInterface
      */
-    public function setFile(File $file);
+    public function setFile(FileInterface $file);
 
-    /**
-     * @return bool
-     */
-    public function isRemoved();
+//    /**
+//     * TODO: remove it
+//     *
+//     * @return bool
+//     */
+//    public function isRemoved();
 
     /**
      * Set the product value
@@ -52,41 +56,51 @@ interface ProductMediaInterface
      */
     public function setValue(ProductValueInterface $value);
 
-    /**
-     * Set mime type
-     *
-     * @param string $mimeType
-     *
-     * @return ProductMediaInterface
-     */
-    public function setMimeType($mimeType);
+//    /**
+//     * TODO: remove it
+//     *
+//     * Set mime type
+//     *
+//     * @param string $mimeType
+//     *
+//     * @return ProductMediaInterface
+//     */
+//    public function setMimeType($mimeType);
+
+//    /**
+//     * TODO: remove it
+//     *
+//     * Reset the media file
+//     *
+//     * @return ProductMediaInterface
+//     */
+//    public function resetFile();
+
+//    /**
+//     * TODO: remove it
+//     *
+//     * Set the media id to copy from
+//     *
+//     * @param int $copyFrom
+//     *
+//     * @return ProductMediaInterface
+//     */
+//    public function setCopyFrom($copyFrom);
+
+//    /**
+//     * TODO: remove it
+//     *
+//     * Set original filename
+//     *
+//     * @param string $originalFilename
+//     *
+//     * @return ProductMediaInterface
+//     */
+//    public function setOriginalFilename($originalFilename);
 
     /**
-     * Reset the media file
+     * TODO: remove it or shortcut it
      *
-     * @return ProductMediaInterface
-     */
-    public function resetFile();
-
-    /**
-     * Set the media id to copy from
-     *
-     * @param int $copyFrom
-     *
-     * @return ProductMediaInterface
-     */
-    public function setCopyFrom($copyFrom);
-
-    /**
-     * Set original filename
-     *
-     * @param string $originalFilename
-     *
-     * @return ProductMediaInterface
-     */
-    public function setOriginalFilename($originalFilename);
-
-    /**
      * Get original filename
      *
      * @return string
@@ -94,20 +108,24 @@ interface ProductMediaInterface
     public function getOriginalFilename();
 
     /**
+     * TODO: remove it or shortcut it
+     *
      * Get mime type
      *
      * @return string
      */
     public function getMimeType();
 
-    /**
-     * Set filename
-     *
-     * @param string $filename
-     *
-     * @return ProductMediaInterface
-     */
-    public function setFilename($filename);
+//    /**
+//     * TODO: remove it
+//     *
+//     * Set filename
+//     *
+//     * @param string $filename
+//     *
+//     * @return ProductMediaInterface
+//     */
+//    public function setFilename($filename);
 
     /**
      * To string
@@ -124,30 +142,36 @@ interface ProductMediaInterface
     public function getId();
 
     /**
+     * TODO: remove it or shortcut it
+     *
      * Get filename
      *
      * @return string
      */
     public function getFilename();
 
-    /**
-     * Get the media id to copy from
-     *
-     * @return int
-     */
-    public function getCopyFrom();
+//    /**
+//     * TODO: remove it
+//     *
+//     * Get the media id to copy from
+//     *
+//     * @return int
+//     */
+//    public function getCopyFrom();
 
     /**
      * Get file
      *
-     * @return File
+     * @return FileInterface
      */
     public function getFile();
 
-    /**
-     * @param bool $removed
-     *
-     * @return ProductMediaInterface
-     */
-    public function setRemoved($removed);
+//    /**
+//     * TODO: remove it
+//     *
+//     * @param bool $removed
+//     *
+//     * @return ProductMediaInterface
+//     */
+//    public function setRemoved($removed);
 }
